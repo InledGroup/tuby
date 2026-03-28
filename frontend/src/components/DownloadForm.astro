@@ -1,0 +1,219 @@
+---
+---
+<div id="video-preview" class="hidden w-full max-w-xl mb-8 animate-in fade-in slide-in-from-top-4 duration-500">
+  <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-4 flex gap-4 items-center">
+    <img id="preview-thumb" src="" alt="Thumbnail" class="w-32 h-20 object-cover rounded-xl bg-zinc-800" />
+    <div class="flex-1 min-w-0">
+      <h3 id="preview-title" class="text-white font-bold truncate">Loading...</h3>
+      <p id="preview-duration" class="text-zinc-500 text-sm mt-1">00:00</p>
+    </div>
+  </div>
+</div>
+
+<form id="download-form" class="w-full max-w-xl space-y-6">
+  <div class="relative group">
+    <input 
+      type="url" 
+      id="youtube-url" 
+      placeholder="Paste YouTube link here..." 
+      required
+      class="w-full bg-zinc-900 border-2 border-zinc-800 focus:border-primary rounded-2xl px-6 py-4 outline-none transition-all duration-300 placeholder:text-zinc-600 font-medium"
+    />
+    <div class="absolute inset-0 bg-primary/10 rounded-2xl -z-10 blur-xl opacity-0 group-focus-within:opacity-100 transition-opacity"></div>
+  </div>
+
+  <div class="flex flex-col sm:flex-row gap-4 items-stretch">
+    <div class="flex bg-zinc-900 rounded-xl p-1 border border-zinc-800 w-full sm:w-auto h-14">
+      <label class="flex-1 cursor-pointer flex items-center">
+        <input type="radio" name="format" value="video" checked class="peer hidden" />
+        <div class="px-6 h-full flex items-center justify-center rounded-lg text-sm font-semibold text-zinc-400 peer-checked:bg-zinc-800 peer-checked:text-white transition-all text-center w-full">
+          Video
+        </div>
+      </label>
+      <label class="flex-1 cursor-pointer flex items-center">
+        <input type="radio" name="format" value="audio" class="peer hidden" />
+        <div class="px-6 h-full flex items-center justify-center rounded-lg text-sm font-semibold text-zinc-400 peer-checked:bg-zinc-800 peer-checked:text-white transition-all text-center w-full">
+          Audio
+        </div>
+      </label>
+    </div>
+
+    <button 
+      type="submit" 
+      id="submit-btn"
+      class="h-14 w-full sm:flex-1 bg-primary hover:bg-red-700 active:scale-95 text-white font-bold rounded-xl transition-all duration-300 shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
+      </svg>
+      Download Now
+    </button>
+  </div>
+</form>
+
+<div id="final-actions" class="hidden w-full max-w-xl space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+  <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 flex flex-col items-center gap-6">
+    <div class="text-green-500 font-bold text-xl flex items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+      </svg>
+      Download Finished
+    </div>
+
+    <!-- Integrated Preview Player -->
+    <div id="post-preview" class="w-full aspect-video bg-black rounded-2xl overflow-hidden border border-zinc-800">
+        <video id="final-video" controls class="w-full h-full hidden"></video>
+        <div id="final-audio-container" class="w-full h-full flex flex-col items-center justify-center gap-4 p-8 hidden">
+            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center animate-pulse">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                </svg>
+            </div>
+            <audio id="final-audio" controls class="w-full"></audio>
+        </div>
+    </div>
+
+    <a 
+      id="download-link" 
+      href="#" 
+      class="w-full bg-primary text-white hover:bg-red-700 font-bold py-4 rounded-2xl text-center transition-all shadow-xl flex items-center justify-center gap-2"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+      </svg>
+      Save to Computer
+    </a>
+    
+    <button id="reset-btn" class="text-zinc-500 hover:text-white text-sm transition-colors flex items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+      </svg>
+      Download Another
+    </button>
+  </div>
+</div>
+
+<script>
+  import { animate } from "motion";
+
+  const form = document.getElementById('download-form') as HTMLFormElement;
+  const urlInput = document.getElementById('youtube-url') as HTMLInputElement;
+  const videoPreview = document.getElementById('video-preview');
+  const previewThumb = document.getElementById('preview-thumb') as HTMLImageElement;
+  const previewTitle = document.getElementById('preview-title');
+  const previewDuration = document.getElementById('preview-duration');
+
+  const progressContainer = document.getElementById('progress-container');
+  const progressBarFill = document.getElementById('progress-bar-fill');
+  const percentageVal = document.getElementById('percentage-val');
+  const etaVal = document.getElementById('eta-val');
+  const speedVal = document.getElementById('speed-val');
+
+  const finalActions = document.getElementById('final-actions');
+  const finalVideo = document.getElementById('final-video') as HTMLVideoElement;
+  const finalAudio = document.getElementById('final-audio') as HTMLAudioElement;
+  const finalAudioContainer = document.getElementById('final-audio-container');
+  const downloadLink = document.getElementById('download-link') as HTMLAnchorElement;
+  const resetBtn = document.getElementById('reset-btn');
+
+  let currentMetadata: any = null;
+
+  // Metadata fetch on URL change
+  urlInput.addEventListener('input', async () => {
+    const url = urlInput.value.trim();
+    if (url.includes('youtube.com/') || url.includes('youtu.be/')) {
+        try {
+            const res = await fetch(`http://localhost:4000/api/metadata?url=${encodeURIComponent(url)}`);
+            if (res.ok) {
+                const data = await res.json();
+                currentMetadata = data;
+                previewThumb.src = data.thumbnail;
+                if (previewTitle) previewTitle.textContent = data.title;
+                if (previewDuration) {
+                    const mins = Math.floor(data.duration / 60);
+                    const secs = data.duration % 60;
+                    previewDuration.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+                }
+                videoPreview?.classList.remove('hidden');
+                animate(videoPreview!, { opacity: [0, 1], y: [10, 0] });
+            }
+        } catch (e) {}
+    } else {
+        videoPreview?.classList.add('hidden');
+    }
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const url = urlInput.value;
+    const format = (form.querySelector('input[name="format"]:checked') as HTMLInputElement).value;
+
+    animate(form, { opacity: 0, scale: 0.95 }, { duration: 0.3 }).finished.then(() => {
+        form.classList.add('hidden');
+        progressContainer?.classList.remove('hidden');
+    });
+
+    try {
+      const response = await fetch('http://localhost:4000/api/download', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url, format })
+      });
+      const { id } = await response.json();
+
+      const eventSource = new EventSource(`http://localhost:4000/api/events/${id}`);
+
+      eventSource.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        
+        if (data.progress) {
+          const percent = parseFloat(data.progress.percentage.replace('%', ''));
+          if (progressBarFill) progressBarFill.style.width = `${percent}%`;
+          if (percentageVal) percentageVal.textContent = data.progress.percentage;
+          if (etaVal) etaVal.textContent = data.progress.eta;
+          if (speedVal) speedVal.textContent = data.progress.speed;
+        }
+
+        if (data.status === 'COMPLETED') {
+          eventSource.close();
+          handleComplete(id, format);
+        }
+
+        if (data.status === 'FAILED') {
+          eventSource.close();
+          alert('Download failed. Please try again.');
+          resetForm();
+        }
+      };
+    } catch (err) {
+      console.error(err);
+      alert('Error connecting to server.');
+      resetForm();
+    }
+  });
+
+  function handleComplete(id: string, format: string) {
+    animate(progressContainer!, { opacity: 0, y: -20 }, { duration: 0.4 }).finished.then(() => {
+        progressContainer?.classList.add('hidden');
+        videoPreview?.classList.add('hidden');
+        finalActions?.classList.remove('hidden');
+        
+        const previewUrl = `http://localhost:4000/api/preview/${id}`;
+        if (format === 'video') {
+            finalVideo.src = previewUrl;
+            finalVideo.classList.remove('hidden');
+        } else {
+            finalAudio.src = previewUrl;
+            finalAudioContainer?.classList.remove('hidden');
+        }
+        
+        downloadLink.href = `http://localhost:4000/api/files/${id}`;
+    });
+  }
+
+  function resetForm() {
+    location.reload();
+  }
+
+  resetBtn?.addEventListener('click', resetForm);
+</script>

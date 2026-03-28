@@ -1,0 +1,30 @@
+---
+---
+<div id="progress-container" class="w-full max-w-xl hidden mt-12 animate-in fade-in zoom-in duration-500">
+  <div class="relative w-full h-4 bg-zinc-900 rounded-full overflow-hidden border border-zinc-800">
+    <div id="progress-bar-fill" class="h-full bg-primary transition-all duration-300" style="width: 0%;">
+        <div class="w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer_2s_infinite]"></div>
+    </div>
+  </div>
+  
+  <div class="flex justify-between mt-4 text-sm font-medium text-zinc-400">
+    <div id="progress-text" class="flex items-center gap-2">
+       <span class="animate-pulse w-2 h-2 bg-primary rounded-full"></span>
+       Downloading... <span id="percentage-val" class="text-white">0%</span>
+    </div>
+    <div id="eta-text" class="text-zinc-500">
+      ETA: <span id="eta-val" class="text-white">N/A</span>
+    </div>
+  </div>
+  
+  <div id="speed-text" class="mt-2 text-xs text-zinc-600 text-center uppercase tracking-widest">
+    Speed: <span id="speed-val" class="text-white">0 MiB/s</span>
+  </div>
+</div>
+
+<style>
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+</style>
