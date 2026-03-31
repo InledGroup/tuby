@@ -1,10 +1,10 @@
-# 📺 Youtuby - Easy & Secure Youtube Video & Audio Downloader
+# 📺 Tuby (previously Tuby) - Easy & Secure YT Video & Audio Downloader
 
 ![Beta Badge](https://img.shields.io/badge/status-BETA-orange?style=for-the-badge)
 ![Docker Badge](https://img.shields.io/badge/docker-%232496ED.svg?style=for-the-badge&logo=docker&logoColor=white)
 ![Astro Badge](https://img.shields.io/badge/astro-%23BC52EE.svg?style=for-the-badge&logo=astro&logoColor=white)
 
-**Youtuby** is a high-performance, aesthetically pleasing YouTube downloader built with **Astro**, **Express**, and **yt-dlp**. It runs in an isolated Docker container, ensuring a secure and clean environment for your media downloads.
+**Tuby** is a high-performance, aesthetically pleasing YouTube downloader built with **Astro**, **Express**, and **yt-dlp**. It runs in an isolated Docker container, ensuring a secure and clean environment for your media downloads.
 
 ---
 

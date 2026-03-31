@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Youtuby - Docker Build & Run Script
+# Tuby - Docker Build & Run Script
 
 # Colores
 RED='\033[0;31m'
